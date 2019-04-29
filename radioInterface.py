@@ -3,6 +3,7 @@ import time
 import serial
 import matplotlib.pyplot as plt
 from math import pi,atan2,sqrt,cos,sin
+import datetime
 ser = serial.Serial('/dev/ttyUSB0')
 
 
@@ -91,7 +92,7 @@ def parseToReading(lineBytes):
 
 
 def calibrateTolerences():
-    with serial.Serial('/dev/ttyUSB0',34800, timeout=1) as ser:
+    with serial.Serial('/dev/ttyUSB0',38400, timeout=1) as ser:
         readings=readingsList()
         count=0
         while ser.readline()!=None and count<30:
@@ -105,10 +106,10 @@ def calibrateTolerences():
 
 ## Main ##
 #calibrateTolerences()
-with serial.Serial('/dev/ttyUSB0',34800, timeout=1) as ser:
+with serial.Serial('/dev/ttyUSB0',38400, timeout=1) as ser:
     readings=readingsList()
-    while ser.readline()!=None:
-        line = ser.read(2)   # read a '\n' terminated line
-        #reading=parseToReading(line)
-        #readings.readings.append(reading)
-        print(line)
+    while True!=None:
+            line = ser.readline()  # read a '\n' terminated line
+            print(line)
+            print(time.localtime( time.time() ))
+            
