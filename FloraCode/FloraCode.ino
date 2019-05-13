@@ -38,7 +38,7 @@ byte accelz = 2;
 byte magx = 3;
 byte magy = 4;
 byte magz = 5;
-int didIt;
+
 void setup()
 {
   // Baud rate MUST match XBee settings (as set in XCTU)
@@ -66,25 +66,25 @@ void loop()
   lsm.read();
   short accelx = lsm.accelData.x; short accely=lsm.accelData.y;short accelz=lsm.accelData.z;
   short magx=lsm.magData.x ; short magy=lsm.magData.y ; short magz= lsm.magData.z;
-  Serial.println(accelx);
+  Serial.println(accelx);Serial.print("\t");Serial.print(accely);Serial.print("\t");Serial.print(accelz);Serial.print("\t");Serial.print(magx);Serial.print("\t");Serial.print(magy);Serial.print("\t");Serial.print(magz);Serial.print("\n");
   // ACCEL X 
-  byte shortArray[]={highByte(accelx),lowByte(accelx),highByte(accely),lowByte(accely),highByte(accelz),lowByte(accelz),highByte(magx),lowByte(magx),highByte(magy),lowByte(magy),highByte(magz),lowByte(magz)};
-  XBee.write(shortArray,3);
+  byte shortArray[]={highByte(accelx),lowByte(accelx)};
+  XBee.write(shortArray,2);
   // ACCEL Y 
-  byte shortArray[]={highByte(accely),lowByte(accely)};
-  XBee.write(shortArray,3);
+  byte shortArray1[]={highByte(accely),lowByte(accely)};
+  XBee.write(shortArray1,2);
   // ACCEL Z
-  byte shortArray[]={highByte(accelz),lowByte(accelz)};
-  XBee.write(shortArray,3);
+  byte shortArray2[]={highByte(accelz),lowByte(accelz)};
+  XBee.write(shortArray2,2);
   // MAG X
-  byte shortArray[]={highByte(highByte(magx),lowByte(magx)};
-  XBee.write(shortArray,3);
+  byte shortArray3[]={highByte(magx),lowByte(magx)};
+  XBee.write(shortArray3,2);
   // MAG Y
-  byte shortArray[]={highByte(magy),lowByte(magy)};
-  XBee.write(shortArray,3);
+  byte shortArray4[]={highByte(magy),lowByte(magy)};
+  XBee.write(shortArray4,2);
   // MAG Z
-  byte shortArray[]={highByte(magz),lowByte(magz)};
-  XBee.write(shortArray,3);
+  byte shortArray5[]={highByte(magz),lowByte(magz)};
+  XBee.write(shortArray5,2);
   
  
   
